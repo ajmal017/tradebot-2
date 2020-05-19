@@ -1,7 +1,7 @@
 import websocket, json, sys
 import dateutil.parser
 from config import * 
-from alpaca_order import place_order
+from order import bracket_order
 from datetime import datetime
 
 minutes_processed = {}
@@ -70,7 +70,7 @@ def on_message(ws, message):
             if not in_position:
                 print("== Placing order and setting in position to true ==")
                 in_position = True
-                place_order(profit_price, loss_price)
+                bracket_order(profit_price, loss_price, "SPY")
                 sys.exit()
 
 
@@ -80,7 +80,6 @@ def on_close(ws):
 if __name__ == '__main__':
 
     socket = "wss://alpaca.socket.polygon.io/stocks"
-
     ws = websocket.WebSocketApp(
         socket,
         on_open=on_open, 

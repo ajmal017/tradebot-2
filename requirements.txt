@@ -1,2 +1,5 @@
 requests
 websocket_client
+pandas
+matplotlib
+backtrader
