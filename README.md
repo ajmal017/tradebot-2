@@ -10,3 +10,10 @@ Features to come:
 - backtesting on intraday data
 - optimization of parameters for indicators in backtrader
 - stock screener for filtering based on performance
+
+# To run:
+
+Fill in variables in config.py and run:
+```
+python run.py
+```
