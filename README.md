@@ -15,5 +15,6 @@ Features to come:
 
 Fill in variables in config.py and run:
 ```
-python run.py
+python main.py --lot=2000
 ```
+The lot argument represents the maximum dollar amount of total equity for one stock symbol. 
