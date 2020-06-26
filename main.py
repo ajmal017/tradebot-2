@@ -21,7 +21,6 @@ def main(args):
     # Event handlers: 
     @stream.on(r'^AM')
     async def on_bars(conn, channel, data):
-        print(data)
         if data.symbol in fleet:
             fleet[data.symbol].on_bar(data)
 

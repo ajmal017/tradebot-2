@@ -34,8 +34,8 @@ def market_order(amount, symbol, is_buy):
         data["side"] = "sell"
     
     try:
-        r = requests.post(ORDERS_URL, json=data, headers=HEADERS)
-        return r
+        order = requests.post(ORDERS_URL, json=data, headers=HEADERS)
+        return json.loads(order.content)
     except Exception as e:
         print(e)
         return "Failed"
@@ -51,8 +51,8 @@ def limit_buy(amount, symbol, limit_price):
             "limit_price": limit_price,
             "time_in_force": "day"
         } 
-        r = requests.post(ORDERS_URL, json=data, headers=HEADERS)
-        return r
+        order = requests.post(ORDERS_URL, json=data, headers=HEADERS)
+        return json.loads(order.content)
     except Exception as e:
         print(e)
         return "Failed"
@@ -68,8 +68,8 @@ def limit_sell(amount, symbol, limit_price):
             "limit_price": limit_price,
             "time_in_force": "day"
         } 
-        r = requests.post(ORDERS_URL, json=data, headers=HEADERS)
-        return r
+        order = requests.post(ORDERS_URL, json=data, headers=HEADERS)
+        return json.loads(order.content)
     except Exception as e:
         print(e)
         return "Failed"
@@ -92,7 +92,7 @@ def stop_limit_order(stop_price, buy_limit_price, sell_limit_price, symbol):
 
     r = requests.post(ORDERS_URL, json=data, headers=HEADERS)
     response = json.loads(r.content)
-    print(response)
+    return response
 
 # Submit both entry and exit order
 def bracket_order(profit_price, loss_price, symbol):
@@ -113,6 +113,9 @@ def bracket_order(profit_price, loss_price, symbol):
 
     r = requests.post(ORDERS_URL, json=data, headers=HEADERS)
     response = json.loads(r.content)
-    print(response)
+    return response
 
+# if __name__ == '__main__':
+#     order = limit_buy(1, 'AMD', 52.00)
+#     print(order['side'])
 

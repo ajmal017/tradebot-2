@@ -52,7 +52,7 @@ class RSIstrategy:
                 self._state = 'TO_BUY'
             else:
                 self._state = 'BUY_SUBMITTED'
-                if self._order.side != 'buy':
+                if self._order['side'] != 'buy':
                     self._l.warn(
                         f'state {self._state} mismatch order {self._order}')
 
@@ -168,13 +168,10 @@ class RSIstrategy:
         now = pd.Timestamp.now(tz='America/New_York')
         order = self._order
         if (order is not None and
-            order.side == 'buy' and now -
-                pd.Timestamp(order.submitted_at, tz='America/New_York') > pd.Timedelta('2 min')):
+            order['side'] == 'buy' and now -
+                pd.Timestamp(order['submitted_at'], tz='America/New_York') > pd.Timedelta('2 min')):
             last_price = api.polygon.last_trade(self._symbol).price
-            self._l.info(
-                f'canceling missed buy order {order.id} at {order.limit_price} '
-                f'(current price = {last_price})')
-            cancel_order(order.id)
+            cancel_order(order['id'])
 
         if self._position is not None and self._outofmarket():
             self._submit_sell(market=True)
