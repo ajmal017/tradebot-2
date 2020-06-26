@@ -1,5 +1,7 @@
 requests
 websocket_client
+asyncio
+alpaca_trade_api
 pandas
 matplotlib
 backtrader

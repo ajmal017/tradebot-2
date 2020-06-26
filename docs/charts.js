@@ -26,8 +26,8 @@ var areaSeries = chart.addAreaSeries({
 
 // Get data
 const url = "https://paper-api.alpaca.markets/v2/account/portfolio/history"
-const API_KEY_ID='PKAT7UPLLN3KH06JKMDU'
-const API_SECRET_KEY='FWHBkusTEu0dODMjPqfcl9sx6p6fttusj05ER8td'
+const API_KEY_ID='PK5WM1SLZKYEA4B8IM98'
+const API_SECRET_KEY='lMhBVSeTo2FCSGsuQTvWqqHB6zG1dqbcxqVOwSaV'
 
 const auth_headers = {
     'APCA-API-KEY-ID': API_KEY_ID, 
